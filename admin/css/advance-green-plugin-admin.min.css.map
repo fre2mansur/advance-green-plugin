@@ -1,0 +1,1 @@
+{"version":3,"sources":["advance-green-plugin-admin.scss"],"names":[],"mappings":"AAEA,KACI,WAAA","file":"advance-green-plugin-admin.min.css","sourcesContent":["@import \"src/variables\";\r\n\r\nbody{\r\n    background: $primary\r\n}"]}

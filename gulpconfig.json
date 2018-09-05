@@ -1,0 +1,24 @@
+{
+    "paths" : {
+        "admindistjs" : "./admin/js",
+        "admindistcss" : "./admin/css",
+
+        "publicdistjs" : "./public/js",
+        "publicdistcss" : "./public/css",
+
+        "node": "./node_modules/",
+        "dev": "./src/dev",
+
+        "adminjs" : "./src/dev/admin/js",
+        "admincss" : "./src/dev/admin/css",
+
+        "publicjs" : "./src/dev/public/js",
+        "publiccss" : "./src/dev/public/css",
+
+        "adminsass": "./src/dev/admin/sass",
+        "admindev": "./src/dev/admin",
+    
+        "publicsass": "./src/dev/public/sass",
+        "publicdev": "./src/dev/public"
+    }
+}

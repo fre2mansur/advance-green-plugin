@@ -1,0 +1,33 @@
+{
+  "name": "advance-green-plugin",
+  "version": "1.0.0",
+  "description": "Custom plugin for agp website",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kshitijbhatt/advance-green-plugin.git"
+  },
+  "author": "Kshitij Bhatt",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/kshitijbhatt/advance-green-plugin/issues"
+  },
+  "homepage": "https://github.com/kshitijbhatt/advance-green-plugin#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "cssnano": "^4.1.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sequence": "^1.0.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-watch": "^5.0.1",
+    "run-sequence": "^2.2.1"
+  }
+}

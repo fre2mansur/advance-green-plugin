@@ -34,11 +34,6 @@ settings_errors();
         $googleanalytics = get_option('googleanalytics');
         echo '<textarea  class="regular-text" name="googleanalytics" rows="8" >'.$googleanalytics.'</textarea>';
     }
-    function agp_pixel_analytics_link(){
-        $pixelanalytics = get_option('pixelanalytics');
-        echo '<textarea  class="regular-text" name="pixelanalytics" rows="8" >'.$pixelanalytics.'</textarea>';
-    }
-
 
 ?>
 
@@ -47,6 +42,14 @@ settings_errors();
     <?php do_settings_sections('advanceMarketingOptions'); ?> <!-- name of the page where the section belongs -->
     <?php submit_button() ?>    
 </form>
+
+<?php
+    add_action('wp_head', 'header_code_push');
+    function header_code_push(){
+        print get_option('googleanalytics');
+    }
+
+?>
 <!-- How to create a custom link of option in other pages
  <button class="button button-primary" 
  onclick="location.href='<?php print get_option( 'facebook'); ?>'" type="button">

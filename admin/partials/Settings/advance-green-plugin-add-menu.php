@@ -37,15 +37,15 @@ function agp_custom_settings(){
 	register_setting('agp-settings-group', 'linkedin');
 	register_setting('agp-settings-group', 'instagram');
 	register_setting('agp-settings-group', 'googleanalytics');
-	register_setting('agp-settings-group', 'pixelanalytics');
+
 	add_settings_section('agp-social-options', 'Social Links' , 'agp_social_options', 'advanceMarketingOptions');
 	add_settings_field('Facebook-Link', 'Facebook', 'agp_facebook_link', 'advanceMarketingOptions', 'agp-social-options');
 	add_settings_field('Twitter-Link', 'Twitter', 'agp_twitter_link', 'advanceMarketingOptions', 'agp-social-options');
 	add_settings_field('Instagram-Link', 'Instagram', 'agp_insta_link', 'advanceMarketingOptions', 'agp-social-options');
 	add_settings_field('LinkedIn-Link', 'LinkedIn', 'agp_linkedin_link', 'advanceMarketingOptions', 'agp-social-options');
 	
-	add_settings_field( 'Google_Analytics-Link', 'Google Analytics', 'agp_google_analytics_link','advanceMarketingOptions', 'agp-social-options' );
-	add_settings_field( 'pixel_analytics-Link', 'Pixel Analytics', 'agp_pixel_analytics_link','advanceMarketingOptions', 'agp-social-options' );
+	add_settings_field( 'Google_Analytics-Link', 'Analytics', 'agp_google_analytics_link','advanceMarketingOptions', 'agp-social-options' );
+
 }
 
 function showOptions(){
@@ -54,6 +54,6 @@ function showOptions(){
 
 function showMarketingOptions() {
 	//generation of our admin page
-	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'menu/social-form.php';
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'settings/social-form.php';
 }
             

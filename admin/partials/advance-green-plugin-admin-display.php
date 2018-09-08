@@ -15,6 +15,9 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <?php 
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/menu/advance-green-plugin-add-menu.php';
-       ?>
+        
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/settings/advance-green-plugin-add-menu.php';
+         
+        
+?>
 		

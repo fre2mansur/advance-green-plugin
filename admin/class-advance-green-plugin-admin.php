@@ -99,5 +99,9 @@ class Advance_Green_Plugin_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/advance-green-plugin-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+	public function display_admin_page(){
+		
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/advance-green-plugin-admin-display.php';
+	}
 
 }

@@ -29,8 +29,9 @@ class Advance_Green_Plugin_Activator {
 	 *
 	 * @since    1.0.0
 	 */
+	 
 	public static function activate() {
-
-	}
+		
+		}
 
 }

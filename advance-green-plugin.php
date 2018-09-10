@@ -45,7 +45,8 @@ define( 'PLUGIN_NAME_VERSION', '1.0.0' );
  */
 function activate_advance_green_plugin() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-advance-green-plugin-activator.php';
-	Advance_Green_Plugin_Activator::activate();
+	$activator = new Advance_Green_Plugin_Activator();
+	$activator->activate();
 }
 
 /**

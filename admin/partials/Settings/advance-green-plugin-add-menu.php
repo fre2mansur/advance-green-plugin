@@ -12,8 +12,8 @@
 		//Generate Sub menu pages
 		add_submenu_page( 
 			'advanceGreenOptions',
-			'Theme Settings',
-			'Theme Settings',
+			'Homepage Slider',
+			'Homepage Slider',
 			'manage_options', 
 			'advanceGreenOptions', 
 			 'showOptions' 
@@ -30,8 +30,13 @@
 //Activate custom settings
 add_action( 'admin_init', 'agp_custom_settings' );
 
+function agp_home_slider_images(){
+	
+}
 
 function agp_custom_settings(){
+
+
 	register_setting('agp-settings-group', 'facebook');
 	register_setting('agp-settings-group', 'twitter');
 	register_setting('agp-settings-group', 'linkedin');
@@ -49,7 +54,7 @@ function agp_custom_settings(){
 }
 
 function showOptions(){
-
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'Slider/header-form.php';
 }
 
 function showMarketingOptions() {

@@ -50,10 +50,6 @@ settings_errors();
     }
 
 ?>
-<!-- How to create a custom link of option in other pages
- <button class="button button-primary" 
- onclick="location.href='<?php print get_option( 'facebook'); ?>'" type="button">
-        Facebook
-</button> -->
+
 
 </div>

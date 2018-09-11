@@ -1,6 +1,6 @@
-<div class="wrap">
-
-
+<div class="container">
+    <div class="row">
+        <div class="wrap">
 <?php 
 		// include_once plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/advance-green-plugin-social-settings.php';	
 		// include_once plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/advance-green-plugin-social-settings.php';	
@@ -50,6 +50,7 @@
     }
 
 ?>
-
+</div>
+</div>
 
 </div>

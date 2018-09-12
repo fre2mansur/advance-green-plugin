@@ -10,7 +10,7 @@ var gulpSequence = require('gulp-sequence');
 var sourcemaps = require('gulp-sourcemaps');
 var watch = require( 'gulp-watch' );
 var uglify = require('gulp-uglify');
-
+var wait = require('gulp-wait');
 
 // Configuration file to keep your code DRY
 var cfg = require( './gulpconfig.json' );
@@ -24,7 +24,8 @@ gulp.task('adminsass', function(callback){
             this.emit( 'end' );
         }
     } ) )
-    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe( sourcemaps.init({loadMaps: true}))
+    .pipe( wait(200)) 
     .pipe( sass( { errLogToConsole: true, includePaths: [paths.adminsass + '/src/**/*'] } ) )
     .pipe( autoprefixer( 'last 2 versions' ) )
     .pipe(sourcemaps.write(undefined, { sourceRoot: null }))
@@ -41,6 +42,7 @@ gulp.task('publicsass', function(){
         }
     } ) )
     .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe( wait(200)) 
     .pipe( sass( { errLogToConsole: true, includePaths: [paths.adminsass + '/src/**/*'] } ) )
     .pipe( autoprefixer( 'last 2 versions' ) )
     .pipe(sourcemaps.write(undefined, { sourceRoot: null }))
@@ -121,7 +123,7 @@ gulp.task( 'cssnano-admin', function() {
  gulp.task( 'adminstyles', function( callback ) {
      gulpSequence( 'adminsass', 'minifycss-admin')( callback );
  } );
- gulp.task( 'adminstyles', function( callback ) {
+ gulp.task( 'publicstyles', function( callback ) {
      gulpSequence('publicsass', 'minifycss-public')( callback );
  } );
   

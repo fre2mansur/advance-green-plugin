@@ -1,1 +1,4 @@
-@import "src/variables";
+@import "./src/variables";
+body{
+    background: $light;
+}

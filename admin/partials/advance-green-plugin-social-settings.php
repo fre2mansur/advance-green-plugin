@@ -1,5 +1,6 @@
-<div class="container-fluid">
-    <div class="wrap">
+<div class="container ml-0">
+    <div class="wrap d-flex">
+        <div class="col">
 <?php 
 		// include_once plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/advance-green-plugin-social-settings.php';	
 		// include_once plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/advance-green-plugin-social-settings.php';	
@@ -35,7 +36,7 @@
 
 ?>
 
-<form method="post" action="options.php">
+<form method="post" action="options.php" class="form-group">
     <?php settings_fields('agp-settings-group'); ?>
     <?php do_settings_sections('advanceMarketingOptions'); ?> <!-- name of the page where the section belongs -->
     <?php submit_button('Save options','btn btn-primary') ?>    
@@ -49,5 +50,6 @@
     }
 
 ?>
+</div>
 </div>
 </div>

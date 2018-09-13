@@ -157,10 +157,11 @@ class Advance_Green_Plugin {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		
-		//Call admin menus and submenus section
+		// Call admin menus and submenus section
 		$this->loader->add_action('admin_menu', $plugin_admin,'agp_menu_section');
 	
-		
+		// Ajax request handler
+		$this->loader->add_action("wp_ajax_advance_slider_request", $plugin_admin, "advance_slider_ajax_handler_fnc");
 
 	}
 

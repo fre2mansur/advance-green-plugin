@@ -16,7 +16,6 @@
   "homepage": "https://github.com/kshitijbhatt/advance-green-plugin#readme",
   "dependencies": {},
   "devDependencies": {
-    "bootstrap": "^4.1.3",
     "cssnano": "^4.1.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",

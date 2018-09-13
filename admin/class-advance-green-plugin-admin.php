@@ -95,8 +95,11 @@ class Advance_Green_Plugin_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/advance-green-plugin-admin.min.js', array( 'jquery' ), $this->version, true );
+		 
+		 wp_enqueue_script( 'advance-green-plugin-admin-jQueryValidation.min.js', plugin_dir_url( __FILE__ ) . 'js/advance-green-plugin-admin-jQueryValidation.min.js', array(), $this->version, true );
+		 wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/advance-green-plugin-admin.min.js', array( 'jquery' ), $this->version, true );
+		 wp_enqueue_script( 'advance-green-plugin-admin-bootstrap.min.js', plugin_dir_url( __FILE__ ) . 'js/advance-green-plugin-admin-bootstrap.min.js', array( 'jQuery' ), $this->version, true );
+		 wp_localize_script($this->plugin_name, "advance_green_ajax_url", admin_url("admin-ajax.php"));
 
 	}
 	public function display_admin_page(){
@@ -161,5 +164,25 @@ class Advance_Green_Plugin_Admin {
 
 	}
 
+	public function advance_slider_ajax_handler_fnc(){
+		$param = isset($_REQUEST['param']) ? $_REQUEST['param'] : "";
+		global $wpdb;
+		$table_name = "{$wpdb->base_prefix}advance_green_plugin_table_images";
+		if(!empty($param) && $param=="save_advance_green_slider_options"){
+			$title = isset($_REQUEST['hompageimagesliderText'])?$_REQUEST['hompageimagesliderText']:"Auroville Green Practices";
+			$image = isset($_REQUEST['hompageimagesliderUrl'])?$_REQUEST['hompageimagesliderUrl']:"http://www.aurovilleportal.org/img/auroville_green_practices.svg";	
+			$wpdb->insert($table_name,array(
+				"Title" => $title,
+				"Image" => $image
+			));
+			if($wpdb->insert_id > 0){
+				echo "Image Succesfully Uploaded";
+			}else{
+				echo "Failed to upload";
+			}
+			
+		}
+		wp_die();
+	}
 		
 }

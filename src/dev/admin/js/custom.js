@@ -29,6 +29,28 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
+	 $("#advanceGreenSliderForm").validate({
+		submitHandler:function(){
+			var postData = $("#advanceGreenSliderForm").serialize()+"&action=advance_slider_request&param=save_advance_green_slider_options";
+			$.post(advance_green_ajax_url, postData, function(response){
+				console.log(response);
+			});
+		}
+	 });
+		$("#btnUploadImage").on("click",function () {  
+			var image = wp.media({
+				title:"Upload Image for Slider",
+				multiple:false
+			}).open().on("select",function(){
+				var files = image.state().get("selection");
+				var jsonFiles = files.toJSON();
+				// console.log(jsonFiles);
+				$.each(jsonFiles,function(index,item){
+					$("#hompageimagesliderUrl").val(item.url);
+					$("#media-image").attr("src",item.url);
+				})
+			})
 
+		});
 
 })( jQuery );

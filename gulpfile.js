@@ -54,7 +54,7 @@ gulp.task('publicsass', function(){
 gulp.task( 'watch', function() {
     gulp.watch( paths.adminsass + '/**/*.scss',['adminstyles']);
     gulp.watch( paths.publicsass + '/**/*.scss',['publicstyles']);
-    gulp.watch( paths.adminjs + '/*.js',['adminjsify']);
+    gulp.watch( paths.adminjs + '/*.js',['adminjsify','adminjsifybootstrap']);
     gulp.watch( paths.publicjs + '/*.js', ['publicjsify']);
 });
 
@@ -108,6 +108,12 @@ gulp.task( 'cssnano-admin', function() {
   gulp.task('adminjsify', function(){
     return gulp.src(paths.adminjs + '/*.js' )
     .pipe(concat('advance-green-plugin-admin.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.admindistjs + '/'));
+ });
+  gulp.task('adminjsifybootstrap', function(){
+    return gulp.src(paths.adminjs + '/bootstrap/*.js' )
+    .pipe(concat('advance-green-plugin-admin-bootstrap.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest(paths.admindistjs + '/'));
  });

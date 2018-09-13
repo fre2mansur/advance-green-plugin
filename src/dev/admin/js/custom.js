@@ -31,9 +31,21 @@
 
 	 $("#advanceGreenSliderForm").validate({
 		submitHandler:function(){
+			 
 			var postData = $("#advanceGreenSliderForm").serialize()+"&action=advance_slider_request&param=save_advance_green_slider_options";
 			$.post(advance_green_ajax_url, postData, function(response){
-				console.log(response);
+				var result = $.parseJSON(response);
+
+				if(result.type==="success"){
+					swal("It's Done!",result.message, "success");
+					$( '#advanceGreenSliderForm' )[0].reset();
+					$("#media-image").attr("src"," ");
+					$("#media-image").removeAttr("src");
+				}
+				else{
+					swal("Sorry!",result.message, "warning");
+				}
+
 			});
 		}
 	 });

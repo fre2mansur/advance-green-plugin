@@ -10,7 +10,7 @@
             <tr>
             <th scope="row">Title</th>
             <td colspan="2">
-            <input type="text" class="form-control" id="hompageimagesliderText" name="hompageimagesliderText" class="form" placeholder="Click to enter"  required="">
+            <input type="text" class="form form-control" id="hompageimagesliderText" name="hompageimagesliderText" placeholder="Click to enter"  required="">
             </td>
             
 
@@ -26,7 +26,8 @@
             <tr>
             <th scope="row"></th>
                 <td colspan="2">
-                    <span><img src="" id="media-image" style="object-fit:cover; vertical-align:top; width:30%; height:30%;" class="" alt=""></span><input type="hidden" id="hompageimagesliderUrl" name="hompageimagesliderUrl" >
+                    <span><img src=" " id="media-image" style="object-fit:contain; vertical-align:top; width:100%; height:30%; max-height:350px; object-position:left;" class="" alt=""></span>
+                    <input type="hidden" class="form-control" id="hompageimagesliderUrl" name="hompageimagesliderUrl" >
                 </td>  
             </tr>
         </tbody>

@@ -49,6 +49,12 @@
 			});
 		}
 	 });
+
+	 $("#btnReset").on("click",function(){
+		$( '#advanceGreenSliderForm' )[0].reset();
+		$("#media-image").attr("src"," ");
+		$("#media-image").removeAttr("src");
+	 });
 		$("#btnUploadImage").on("click",function () {  
 			var image = wp.media({
 				title:"Upload Image for Slider",

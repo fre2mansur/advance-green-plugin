@@ -54,13 +54,13 @@ class Advance_Green_Plugin_Activator {
 		// }
 	}
 		private function create_table($wpdb, $charset_collate){
-			$table_name = "{$wpdb->base_prefix}advance_green_plugin_table_images";
+			$table_name = "{$wpdb->base_prefix}advance_green_plugin_gallery";
 			$check_table_name = $wpdb->get_var("SHOW TABLES LIKE '$table_name'");
 			if ( $check_table_name != $table_name ) {
 			$sql = "CREATE TABLE $table_name (
 				id int(11) NOT NULL AUTO_INCREMENT,
-				Title text(255) DEFAULT NULL,
-				Image longtext DEFAULT NULL,
+				title text(255) DEFAULT NULL,
+				src longtext DEFAULT NULL,
 				PRIMARY KEY (id)
 			) $charset_collate;";
 			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );

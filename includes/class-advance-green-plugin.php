@@ -37,7 +37,7 @@ class Advance_Green_Plugin {
 	 * @access   protected
 	 * @var      Advance_Green_Plugin_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
-	protected $loader;
+	 
 
 	/**
 	 * The unique identifier of this plugin.
@@ -153,9 +153,15 @@ class Advance_Green_Plugin {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Advance_Green_Plugin_Admin( $this->get_plugin_name(), $this->get_version() );
-
+		
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		
+		// Call admin menus and submenus section
+		$this->loader->add_action('admin_menu', $plugin_admin,'agp_menu_section');
+	
+		// Ajax request handler
+		$this->loader->add_action("wp_ajax_advance_slider_request", $plugin_admin, "advance_slider_ajax_handler_fnc");
 
 	}
 
@@ -172,7 +178,7 @@ class Advance_Green_Plugin {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
+		
 	}
 
 	/**

@@ -9,7 +9,8 @@ var rename = require('gulp-rename');
 var gulpSequence = require('gulp-sequence');
 var sourcemaps = require('gulp-sourcemaps');
 var watch = require( 'gulp-watch' );
-
+var uglify = require('gulp-uglify');
+var wait = require('gulp-wait');
 
 // Configuration file to keep your code DRY
 var cfg = require( './gulpconfig.json' );
@@ -23,7 +24,8 @@ gulp.task('adminsass', function(callback){
             this.emit( 'end' );
         }
     } ) )
-    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe( sourcemaps.init({loadMaps: true}))
+    .pipe( wait(200)) 
     .pipe( sass( { errLogToConsole: true, includePaths: [paths.adminsass + '/src/**/*'] } ) )
     .pipe( autoprefixer( 'last 2 versions' ) )
     .pipe(sourcemaps.write(undefined, { sourceRoot: null }))
@@ -40,6 +42,7 @@ gulp.task('publicsass', function(){
         }
     } ) )
     .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe( wait(200)) 
     .pipe( sass( { errLogToConsole: true, includePaths: [paths.adminsass + '/src/**/*'] } ) )
     .pipe( autoprefixer( 'last 2 versions' ) )
     .pipe(sourcemaps.write(undefined, { sourceRoot: null }))
@@ -49,9 +52,10 @@ gulp.task('publicsass', function(){
 
 
 gulp.task( 'watch', function() {
-    gulp.watch( paths.adminsass + '/**/*.scss',['styles']);
-    gulp.watch( paths.publicsass + '/**/*.scss',['styles']);
-    gulp.watch( [paths.dev + '/js/**/*.js', 'js/**/*.js', '!js/theme.js', '!js/theme.min.js']);
+    gulp.watch( paths.adminsass + '/**/*.scss',['adminstyles']);
+    gulp.watch( paths.publicsass + '/**/*.scss',['publicstyles']);
+    gulp.watch( paths.adminjs + '/*.js',['adminjsify','adminjsifybootstrap']);
+    gulp.watch( paths.publicjs + '/*.js', ['publicjsify']);
 });
 
 
@@ -100,8 +104,34 @@ gulp.task( 'cssnano-admin', function() {
        .pipe( sourcemaps.write( './' ) )
       .pipe( gulp.dest( paths.publicdistcss ) );
   });
+
+  gulp.task('adminjsify', function(){
+    return gulp.src(paths.adminjs + '/*.js' )
+    .pipe(concat('advance-green-plugin-admin.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.admindistjs + '/'));
+ });
+  gulp.task('adminjsifybootstrap', function(){
+    return gulp.src(paths.adminjs + '/bootstrap/*.js' )
+    .pipe(concat('advance-green-plugin-admin-bootstrap.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.admindistjs + '/'));
+ });
+  gulp.task('publicjsify', function(){
+    return gulp.src(paths.publicjs + '/*.js' )
+    .pipe(concat('advance-green-plugin-public.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.publicdistjs + '/'));
+ });
+ 
   
-  gulp.task( 'styles', function( callback ) {
-      gulpSequence( 'adminsass', 'minifycss-admin' )( callback );
-  } );
+ 
+ gulp.task( 'adminstyles', function( callback ) {
+     gulpSequence( 'adminsass', 'minifycss-admin')( callback );
+ } );
+ gulp.task( 'publicstyles', function( callback ) {
+     gulpSequence('publicsass', 'minifycss-public')( callback );
+ } );
+  
+
   

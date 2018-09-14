@@ -95,9 +95,103 @@ class Advance_Green_Plugin_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		 
+		 wp_enqueue_script( 'advance-green-plugin-admin-jQueryValidation.min.js', plugin_dir_url( __FILE__ ) . 'js/advance-green-plugin-admin-jQueryValidation.min.js', array(), $this->version, true );
+		 wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/advance-green-plugin-admin.min.js', array( 'jquery' ), $this->version, true );
+		 wp_enqueue_script( 'advance-green-plugin-admin-bootstrap.min.js', plugin_dir_url( __FILE__ ) . 'js/advance-green-plugin-admin-bootstrap.min.js', array( 'jQuery' ), $this->version, true );
+		 wp_enqueue_script( 'advance-green-plugin-admin-sweetalert-min.js', plugin_dir_url( __FILE__ ) . 'js/advance-green-plugin-admin-sweetalert-min.js', array(), $this->version, true );
+		 wp_localize_script($this->plugin_name, "advance_green_ajax_url", admin_url("admin-ajax.php"));
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/advance-green-plugin-admin.js', array( 'jquery' ), $this->version, false );
+	}
+	public function display_admin_page(){
+		
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/advance-green-plugin-admin-display.php';
+	}
+
+	public function agp_menu_section() {
+		add_menu_page(
+			'Advance Green Options','AGP Options','manage_options','advanceGreenOptions',array($this, 'homepageSlider' ),'dashicons-admin-generic','45.0'
+			);
+		//Generate Sub menu pages
+		add_submenu_page( 
+			'advanceGreenOptions','Homepage Slider','Homepage Slider','manage_options',	'advanceGreenOptions',array($this, 'homepageSlider' )
+		);
+		add_submenu_page(
+			'advanceGreenOptions','General Settings','General Settings','manage_options','advanceGeneralSettings',array($this,'advanceGeneralSettings')
+		);
+		add_submenu_page(
+			'advanceGreenOptions','Marketing Settings','Marketing Settings','manage_options','advanceMarketingOptions',array($this,'showMarketingOptions')
+		);
+		register_setting('agp-settings-group', 'facebook'
+		);
+		register_setting('agp-settings-group', 'twitter'
+		);
+		register_setting('agp-settings-group', 'linkedin'
+		);
+		register_setting('agp-settings-group', 'instagram'
+		);
+		register_setting('agp-settings-group', 'googleanalytics'
+		);
+		
+			add_settings_section('agp-social-options', 'Social Links' , '', 'advanceMarketingOptions'
+			);
+			
+				add_settings_field('Facebook-Link', 'Facebook', 'agp_facebook_link', 'advanceMarketingOptions', 'agp-social-options'
+				);
+				add_settings_field('Twitter-Link', 'Twitter', 'agp_twitter_link', 'advanceMarketingOptions', 'agp-social-options'
+				);
+				add_settings_field('Instagram-Link', 'Instagram', 'agp_insta_link', 'advanceMarketingOptions', 'agp-social-options'
+				);
+				add_settings_field('LinkedIn-Link', 'LinkedIn', 'agp_linkedin_link', 'advanceMarketingOptions', 'agp-social-options'
+				);
+			
+				add_settings_field( 'Google_Analytics-Link', 'Analytics', 'agp_google_analytics_link','advanceMarketingOptions', 'agp-social-options' 
+				);
+			
+	}
+
+	public function homepageSlider(){
+		
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/advance-green-plugin-header-slider.php';	
+	
+	}
+
+	public function showMarketingOptions(){
+		
+		include_once plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/advance-green-plugin-social-settings.php';
+	
+	}
+	public function advanceGeneralSettings(){
 
 	}
 
+	public function advance_slider_ajax_handler_fnc(){
+		$param = isset($_REQUEST['param']) ? $_REQUEST['param'] : "";
+		global $wpdb;
+		$table_name = "{$wpdb->base_prefix}advance_green_plugin_table_images";
+		if(!empty($param) && $param=="save_advance_green_slider_options"){
+			$title = isset($_REQUEST['hompageimagesliderText']) ? $_REQUEST['hompageimagesliderText'] : "Auroville Green Practices";
+			$image = isset($_REQUEST['hompageimagesliderUrl']) ? $_REQUEST['hompageimagesliderUrl'] : "http://www.aurovilleportal.org/img/auroville_green_practices.svg";	
+			$wpdb->insert($table_name,array(
+				"Title" => $title,
+				"Image" => $image
+			));
+			
+			if($wpdb->insert_id > 0){
+				echo json_encode(array(
+					"type" => "success",
+					"message" => "Image successfully uploaded"
+				));
+				
+			}else{
+				echo json_encode(array(
+					"type" => "fail",
+					"message" => "Image can't be uploaded! Please try again"
+				));
+			}
+			
+		}
+		wp_die();
+	}
+		
 }

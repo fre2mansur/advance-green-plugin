@@ -38,20 +38,7 @@ class Advance_Green_Plugin_Activator {
 		$charset_collate = $wpdb->get_charset_collate();
 		$this->create_table($wpdb, $charset_collate);
 
-		// require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-		// global $wpdb;
-
-		// if(cound($wpdb->get_var("show tables like'".$this->tables->Advance_Green_Plugin_Table_Images()."'")) == 0 ){
-		// 	$sqlQuery = '
-			
-		// 	CREATE TABLE `'.$this->tables->Advance_Green_Plugin_Table_Images(). '` (
-		// 		`id` bigint(20) NOT NULL AUTO_INCREMENT,
-		// 		`Title` text,
-		// 		`Image` longtext,
-		// 		PRIMARY KEY (`id`)
-		// 	   ) ENGINE=InnoDB DEFAULT CHARSET=latin1';
-		// 	dbDelta( $sqlQuery);
-		// }
+		
 	}
 		private function create_table($wpdb, $charset_collate){
 			$table_name = "{$wpdb->base_prefix}advance_green_plugin_gallery";

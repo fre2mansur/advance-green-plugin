@@ -17,10 +17,14 @@
             </tr>
             <tr>
             <th scope="row">Upload</th>
-            <td><button type="button" class="btn btn-default" id="btnUploadImage">Upload Image</button>
+            <td ><button type="button" class="btn btn-secondary" id="btnUploadImage">Upload Image</button>
             </td>
-            <td><button type="submit" class="btn btn-info">Submit</button> 
-                    </td>
+            <td>
+            <div class="btn-group" role="group" aria-label="Form Buttons">
+            <button type="submit" class="btn btn-outline-info">Submit</button> 
+            <button type="reset" id="btnReset" class="btn  btn-outline-danger">Reset</button> 
+            </div>
+            </td>
             
             </tr>
             <tr>
